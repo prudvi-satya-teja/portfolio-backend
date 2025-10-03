@@ -33,7 +33,7 @@ app.post("/api/contact", async (req, res) => {
 
         // 2️⃣ Send auto-reply to user
         await transporter.sendMail({
-            from: `"Prudvi Satya Teja" <your_email@gmail.com>`,
+            from: `"Prudvi Satya Teja" <${process.env.GMAIL}>`,
             to: email,
             subject: "Thank you for contacting me!",
             text: `Hi ${name},\n\nThank you for reaching out! I have received your message and will get back to you soon.\n\nBest regards,\nPrudvi`,
