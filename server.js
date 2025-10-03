@@ -46,6 +46,12 @@ app.post("/api/contact", async (req, res) => {
     }
 });
 
+setInterval(() => {
+    try {
+        fetch("https://portfolio-backend-n8lx.onrender.com");
+    } catch (e) {}
+}, 840000);
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
