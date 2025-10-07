@@ -15,12 +15,13 @@ app.use(
 
 const PORT = 5000;
 
-// Configure your email transporter
 const transporter = nodemailer.createTransport({
-    service: "Gmail", // or another email provider
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // SSL
     auth: {
-        user: "prudvisatyateja1234@gmail.com", // your email
-        pass: "olks qnyf khvr lvog", // use App Password if using Gmail
+        user: "prudvisatyateja1234@gmail.com",
+        pass: "olksqnyfkhvrlvog", // no spaces
     },
 });
 
