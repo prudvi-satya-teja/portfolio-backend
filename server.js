@@ -7,6 +7,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use(
+    cors({
+        origin: "https://prudvi-satya-teja.vercel.app", // replace with your frontend URL
+    })
+);
+
 const PORT = 5000;
 
 // Configure your email transporter
