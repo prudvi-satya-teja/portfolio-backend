@@ -7,21 +7,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use(
-    cors({
-        origin: "https://prudvi-satya-teja.vercel.app", // replace with your frontend URL
-    })
-);
-
 const PORT = 5000;
 
+// Configure your email transporter
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // SSL
+    service: "Gmail", // or another email provider
     auth: {
-        user: "prudvisatyateja1234@gmail.com",
-        pass: "olksqnyfkhvrlvog", // no spaces
+        user: process.env.GMAIL, // your email
+        pass: process.env.APP_PASS_WORD, // use App Password if using Gmail
     },
 });
 
@@ -32,15 +25,15 @@ app.post("/api/contact", async (req, res) => {
     try {
         // 1️⃣ Send email to yourself
         await transporter.sendMail({
-            from: `"Website Contact" <${email}>`,
-            to: "prudvisatyateja1234@gmail.com",
+            from: `"Website Contact" <${process.env.GMAIL}>`,
+            to: process.env.GMAIL,
             subject: `New message from ${name}`,
             text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`,
         });
 
         // 2️⃣ Send auto-reply to user
         await transporter.sendMail({
-            from: `"Prudvi Satya Teja" <prudvisatyateja1234@gmail.com>`,
+            from: `"Prudvi Satya Teja" <${process.env.GMAIL}>`,
             to: email,
             subject: "Thank you for contacting me!",
             text: `Hi ${name},\n\nThank you for reaching out! I have received your message and will get back to you soon.\n\nBest regards,\nPrudvi`,
