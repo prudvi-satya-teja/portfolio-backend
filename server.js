@@ -13,8 +13,8 @@ const PORT = 5000;
 const transporter = nodemailer.createTransport({
     service: "Gmail", // or another email provider
     auth: {
-        user: process.env.GMAIL, // your email
-        pass: process.env.APP_PASS_WORD, // use App Password if using Gmail
+        user: "prudvisatyateja1234@gmail.com", // your email
+        pass: "olks qnyf khvr lvog", // use App Password if using Gmail
     },
 });
 
@@ -25,15 +25,15 @@ app.post("/api/contact", async (req, res) => {
     try {
         // 1️⃣ Send email to yourself
         await transporter.sendMail({
-            from: `"Website Contact" <${process.env.GMAIL}>`,
-            to: process.env.GMAIL,
+            from: `"Website Contact" <${email}>`,
+            to: "prudvisatyateja1234@gmail.com",
             subject: `New message from ${name}`,
             text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`,
         });
 
         // 2️⃣ Send auto-reply to user
         await transporter.sendMail({
-            from: `"Prudvi Satya Teja" <${process.env.GMAIL}>`,
+            from: `"Prudvi Satya Teja" <prudvisatyateja1234@gmail.com>`,
             to: email,
             subject: "Thank you for contacting me!",
             text: `Hi ${name},\n\nThank you for reaching out! I have received your message and will get back to you soon.\n\nBest regards,\nPrudvi`,
